@@ -1,0 +1,26 @@
+<program> ::= <statement> +
+<statement> ::= <assignment> | <print> | <expression> ";" 
+<assignment> ::= <variable> "=" <expression> ";"
+<print> ::= "print" <expression> ";"
+<expression> ::= <term> (("+" | "-)<term>)*
+<term> ::= <factor> (("*" | "/") <factor> )*
+<factor> ::= <number> | <variable> | "(" <expression> ")"
+
+
+interprete
+
+grammaire bnf
+
+<program> ::= <statement>+
+<statement> ::= <assignment> | <afficher> | <if>
+<assignment> ::= <VARIABLE> "=" <expression>
+<afficher> ::= "afficher" "(" """ <LITTERAL> """ ")" | "afficher" "(" <expression> ")" | "afficher" "(" <NUMBER> ")" | "afficher" "(" <VARIABLE> ")"
+<expression> ::= <term> (("+" | "-") <term>)*
+<term> ::= <factor> (("*" | "/") <factor>)* 
+<factor> ::= "(" <expression> ")" | <NUMBER>  | <VARIABLE>
+<if> ::= "if" "(" <bool> ")" "{"<statement>"}"
+
+
+
+
+

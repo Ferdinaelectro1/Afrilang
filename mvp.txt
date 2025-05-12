@@ -1,0 +1,2 @@
+a = 8 + 6
+afficher(a)
