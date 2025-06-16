@@ -26,8 +26,7 @@ void run_file(const std::string file_name)
     std::string line_code = "";
     Parser2 parser;
     while (std::getline(file,line_code))
-    {
-        
+    {  
         Lexer2 lexer(line_code);
         parser.parse2(lexer.generate_tokens()); 
     }

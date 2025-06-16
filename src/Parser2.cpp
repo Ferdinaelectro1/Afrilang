@@ -94,7 +94,7 @@ void Parser2::parseStatments(bool ignore)
     }
     else if(m_current_tokens.get_type() == token_type::LITERAL && m_current_tokens.get_value() == "if")
     {
-        parseif(ignore);
+        parseIf(ignore);
     }
     else if(m_current_tokens.get_type() == LITERAL)
     {
@@ -306,7 +306,7 @@ std::string Parser2::parseExpression()
                 if(m_tokens[m_pos-2].get_type() == token_type::PLUS)
                 {
                    nub1 += std::stod(parseTerm());
-                   std::cout << "passer et nub1  = "<< nub1<< std::endl;
+                  // std::cout << "passer et nub1  = "<< nub1<< std::endl;
                 }
                 else
                 {
@@ -348,7 +348,7 @@ std::string Parser2::parseExpression()
 }
 
 //Parser un if
-void Parser2::parseif(bool ignore)
+void Parser2::parseIf(bool ignore)
 {
     if(!ignore)
     {

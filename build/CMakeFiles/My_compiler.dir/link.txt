@@ -1,0 +1,1 @@
+/usr/bin/c++ -rdynamic CMakeFiles/My_compiler.dir/main.cpp.o CMakeFiles/My_compiler.dir/src/Token.cpp.o CMakeFiles/My_compiler.dir/src/lexer2.cpp.o CMakeFiles/My_compiler.dir/src/Parser2.cpp.o -o My_compiler 

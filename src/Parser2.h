@@ -28,10 +28,11 @@ class Parser2
       void parseStatments(bool ignore);
       std::string parseExpression();
       void parseAfficher(bool ignore);
-      void parseif(bool ignore);
+      void parseIf(bool ignore);
       std::string parseTerm();
       std::string parseFactor();
       void parseIgnore();
       void print_error(std::string error);
       void print_error_without_quit(std::string error);
+      void parseElse(bool ignore);
 };
