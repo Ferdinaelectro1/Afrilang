@@ -110,6 +110,12 @@ std::vector<Token> Lexer2::generate_tokens()
                     case '}':
                     m_tokens.push_back(Token(ACCOLADE_DROITE,"}"));
                     break;
+                    case '<':
+                    m_tokens.push_back(Token(INFERIEUR,"<"));
+                    break;
+                    case '>':
+                    m_tokens.push_back(Token(SUPERIEUR,">"));
+                    break;
                     default:
                     m_tokens.push_back(Token(OTHER,""));
                     break;

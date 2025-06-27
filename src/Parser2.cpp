@@ -75,6 +75,33 @@ void Parser2::parseIgnore()
     while (m_current_tokens.get_type() != token_type::ACCOLADE_DROITE);
 }
 
+bool Parser2::conditionValide()
+{
+    int left = 0;
+    int right = 0;
+    bool condition = false;
+    left = std::stoi(parseFactor());
+    next_tokens();
+    std::string operateur = m_current_tokens.get_value();
+    next_tokens();
+    right = std::stoi(parseFactor());
+    //std::cout << "right = " << right << std::endl;
+    switch (operateur[0])
+    {
+        case '<':
+            condition = left < right;
+            break;
+        case '>':
+            condition = left > right;
+            break;
+
+        default:
+            print_error("Erreur : opérateur non reconnu : '"+operateur);
+            break;
+    }
+    return condition;
+}
+
 void Parser2::parseStatments(bool ignore)
 {
     next_tokens();
@@ -356,83 +383,32 @@ void Parser2::parseIf(bool ignore)
         if(m_current_tokens.get_type() == token_type::PARENT_GAUCHE)
         {
             next_tokens();
-            if(m_current_tokens.get_type() == token_type::NUMBER)
+            bool condition;
+            condition = conditionValide();
+            next_tokens();
+            if(m_current_tokens.get_type() == token_type::PARENT_DROITE)
             {
-                bool condition;
-                if(std::stod(m_current_tokens.get_value()) > 0)
-                {
-                    condition = true;
-                }
-                else
-                {
-                    condition = false;
-                }
                 next_tokens();
-                if(m_current_tokens.get_type() == token_type::PARENT_DROITE)
+                if(m_current_tokens.get_type() == token_type::ACCOLADE_GAUCHE)
                 {
-                    next_tokens();
-                    if(m_current_tokens.get_type() == token_type::ACCOLADE_GAUCHE)
-                    {
-                        if(condition)
-                          parseStatments(0);
-                        else
-                          parseStatments(1);
-                        
-                        if(condition)
-                        {
-                            next_tokens();
-                        }
-                    }
+                    if(condition)
+                        parseStatments(0);
                     else
+                        parseStatments(1);
+                    
+                    if(condition)
                     {
-                        print_error("Erreur : Manque de '{' après la condition ");
+                        next_tokens();
                     }
                 }
                 else
                 {
-                    print_error("Erreur : Manque de ')' à la fin de la condition ");
+                    print_error("Erreur : Manque de '{' après la condition ");
                 }
-            }
-            else if(m_current_tokens.get_type() == LITERAL)
-            {
-                bool condition;
-                if(std::stod(parseFactor()) > 0)
-                {
-                    condition = true;
-                }
-                else
-                {
-                    condition = false;
-                }
-                next_tokens();
-                if(m_current_tokens.get_type() == token_type::PARENT_DROITE)
-                {
-                    next_tokens();
-                    if(m_current_tokens.get_type() == token_type::ACCOLADE_GAUCHE)
-                    {
-                        if(condition)
-                          parseStatments(0);
-                        else
-                          parseStatments(1);
-                        
-                        if(condition)
-                        {
-                            next_tokens();
-                        }
-                    }
-                    else
-                    {
-                        print_error("Erreur : Manque de '{' après la condition ");
-                    }
-                }
-                else
-                {
-                    print_error("Erreur : Manque de ')' à la fin de la condition ");
-                }   
             }
             else
             {
-                print_error("Erreur : condition '"+m_current_tokens.get_value()+"' non reconnu");
+                print_error("Erreur : Manque de ')' à la fin de la condition ");
             }
         }
         else

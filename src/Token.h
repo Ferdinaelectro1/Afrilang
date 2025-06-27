@@ -18,6 +18,8 @@ enum token_type
     CHAINE_CARACTERE,
     ACCOLADE_DROITE,
     ACCOLADE_GAUCHE,
+    INFERIEUR,
+    SUPERIEUR,
     FIN
 };
 

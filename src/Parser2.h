@@ -35,4 +35,5 @@ class Parser2
       void print_error(std::string error);
       void print_error_without_quit(std::string error);
       void parseElse(bool ignore);
+      bool conditionValide();
 };
