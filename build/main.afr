@@ -1,6 +1,0 @@
-afficher("Début du code")
-a = 23
-if(0){ afficher("salut bro") }
-a = a * 2
-afficher("a = ")
-afficher(a)

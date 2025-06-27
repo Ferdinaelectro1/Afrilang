@@ -1,3 +1,0 @@
-/home/ferdinand/Documents/Afrilang/build/CMakeFiles/My_compiler.dir
-/home/ferdinand/Documents/Afrilang/build/CMakeFiles/edit_cache.dir
-/home/ferdinand/Documents/Afrilang/build/CMakeFiles/rebuild_cache.dir
