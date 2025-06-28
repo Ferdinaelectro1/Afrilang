@@ -20,6 +20,10 @@ enum token_type
     ACCOLADE_GAUCHE,
     INFERIEUR,
     SUPERIEUR,
+    INFERIEUR_EGAL,
+    SUPERIEUR_EGAL,
+    DIFFERENT,
+    EGALITE,
     FIN
 };
 

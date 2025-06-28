@@ -85,16 +85,44 @@ bool Parser2::conditionValide()
     std::string operateur = m_current_tokens.get_value();
     next_tokens();
     right = std::stoi(parseFactor());
-    //std::cout << "right = " << right << std::endl;
     switch (operateur[0])
     {
         case '<':
-            condition = left < right;
+            if (operateur.size() > 1 && operateur[1] == '=')
+            {
+                condition = left <= right;
+            }
+            else
+                condition = left < right;
             break;
         case '>':
-            condition = left > right;
+            if (operateur.size() > 1 && operateur[1] == '=')
+            {
+                condition = left >= right;
+            }
+            else
+                condition = left > right;
             break;
-
+        case '=':
+            if(operateur.size() > 1 && operateur[1] == '=')
+            {
+                condition = left == right;
+            }
+            else 
+            {
+                print_error("Erreur : opérateur non reconnu : '"+operateur+"', '=' doit être suivi de '='");
+            }
+            break;
+        case '!':
+            if(operateur.size() > 1 && operateur[1] == '=')
+            {
+                condition = left != right;
+            }
+            else 
+            {
+                print_error("Erreur : opérateur non reconnu : '"+operateur+"', '!' doit être suivi de '='");
+            }
+            break;
         default:
             print_error("Erreur : opérateur non reconnu : '"+operateur);
             break;

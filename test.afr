@@ -1,0 +1,7 @@
+afficher("Bienvenue dans le comparateur")
+a = 34
+if(a == 34) { afficher("a == 34")}
+afficher("a s'incrémente")
+if(a > 0) {afficher("a est positif")}
+afficher("====== TEST DES OPÉRATEURS DE COMPARAISON =======")
+if(a <= 90) {afficher("Condition valide") }

@@ -101,9 +101,6 @@ std::vector<Token> Lexer2::generate_tokens()
                     case '"':
                     m_tokens.push_back(Token(GUILLEMENT,"\""));
                     break;
-                    case '=':
-                    m_tokens.push_back(Token(EGAL,"="));
-                    break;
                     case '{':
                     m_tokens.push_back(Token(ACCOLADE_GAUCHE,"{"));
                     break;
@@ -111,10 +108,42 @@ std::vector<Token> Lexer2::generate_tokens()
                     m_tokens.push_back(Token(ACCOLADE_DROITE,"}"));
                     break;
                     case '<':
-                    m_tokens.push_back(Token(INFERIEUR,"<"));
+                    if(temp_code[i+1] == '=')
+                    {
+                        m_tokens.push_back(Token(INFERIEUR_EGAL,"<="));
+                        i++; //on saute le '=' suivant
+                    }
+                    else
+                        m_tokens.push_back(Token(INFERIEUR,"<"));
                     break;
                     case '>':
-                    m_tokens.push_back(Token(SUPERIEUR,">"));
+                    if(temp_code[i+1] == '=')
+                    {
+                        m_tokens.push_back(Token(SUPERIEUR_EGAL,">="));
+                        i++; //on saute le '=' suivant
+                    }
+                    else
+                        m_tokens.push_back(Token(SUPERIEUR,">"));
+                    break;
+                    case '!':
+                    if(temp_code[i+1] == '=')
+                    {
+                        m_tokens.push_back(Token(DIFFERENT,"!="));
+                        i++; //on saute le '=' suivant
+                    }
+                    else
+                    {
+                        m_tokens.push_back(Token(OTHER,"!"));
+                    }
+                    break;
+                    case '=':
+                    if(temp_code[i+1] == '=')
+                    {
+                        m_tokens.push_back(Token(EGALITE,"=="));
+                        i++; //on saute le '=' suivant
+                    }
+                    else
+                        m_tokens.push_back(Token(EGAL,"="));
                     break;
                     default:
                     m_tokens.push_back(Token(OTHER,""));
